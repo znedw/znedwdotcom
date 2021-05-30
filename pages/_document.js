@@ -11,7 +11,7 @@ class MyDocument extends Document {
       title: 'Zach Nedwich',
       description: 'my website (borat voice)',
       image:
-        'https://znedw.com/public/images/lho.jpg'
+        'https://znedw.com/images/lho.jpg'
     }
 
     return (

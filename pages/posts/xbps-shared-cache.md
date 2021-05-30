@@ -39,10 +39,12 @@ I read a comment somewhere, on Reddit maybe, about a pacman user who exported th
 
 First, the share, my server fstab looks like this:
 
-/var/cache/xbps /export/xbps non defaults,bind 0 0
+`/var/cache/xbps /export/xbps non defaults,bind 0 0`
+
 And all of my clients' fstabs look like this:
 
-nfsserver:/export/xbps /var/cache/xbps nfs auto,noatime,rsize=65536,wsize=65536,intr,_netdev,timeo=300,retrans=1 0 0
+`nfsserver:/export/xbps /var/cache/xbps nfs auto,noatime,rsize=65536,wsize=65536,intr,_netdev,timeo=300,retrans=1 0 0`
+
 Easy right, there's some extra NFS incantations to export the bind mounted share.
 
 This lives in /etc/exports and for simplicities sake, I allow connections on all interfaces:
