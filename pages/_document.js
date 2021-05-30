@@ -11,7 +11,7 @@ class MyDocument extends Document {
       title: 'Zach Nedwich',
       description: 'my website (borat voice)',
       image:
-        'https://assets.vercel.com/image/upload/q_auto/front/vercel/dps.png'
+        'https://znedw.com/public/images/lho.jpg'
     }
 
     return (
