@@ -1201,7 +1201,7 @@ graceful-fs@^4.1.10, graceful-fs@^4.1.2, graceful-fs@^4.2.6:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-gray-matter@^4.0.2:
+gray-matter@^4.0.2, gray-matter@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/gray-matter/-/gray-matter-4.0.3.tgz#e893c064825de73ea1f5f7d88c7a9f7274288798"
   integrity sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==
@@ -2003,7 +2003,7 @@ next@latest:
     vm-browserify "1.1.2"
     watchpack "2.1.1"
 
-nextra-theme-blog@^0.1.5:
+nextra-theme-blog@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-0.1.6.tgz#7ca96ed233ea7ec32ac99860aad7cf1de578a10f"
   integrity sha512-La8SCDHmJZQxI/9X4jDRcOgkiwAaHTmufaISzAymeJN8geXQELr9XJowpZYUNC6YEEJO2Wqux72PsuLu1BYNDg==
@@ -2014,7 +2014,7 @@ nextra-theme-blog@^0.1.5:
     prism-react-renderer "^1.1.1"
     react-cusdis "^2.0.1"
 
-nextra@^0.4.4:
+nextra@^0.4.5:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/nextra/-/nextra-0.4.5.tgz#3e0b600307ad22ee3cc4d450b6a3840794dc70f4"
   integrity sha512-Hg70ikzfhg9k5IK3RPcIDStAr6lO6+xsT7mm6Wsd++AD6QaQWa0xdv53VI7NYLUlEqbF4VDCkaAwMAQDRR2S2g==
