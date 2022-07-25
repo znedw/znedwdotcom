@@ -53,5 +53,3 @@ This lives in /etc/exports and for simplicities sake, I allow connections on all
 This all works a treat, my package cache is shared between all of my machines, and my struggling 10mbit ADSL connection can have a reprieve.
 
 Say what you want about NFS, this took 5 minutes all told and works better than my previous solution.
-
-fin.

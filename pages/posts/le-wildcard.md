@@ -145,5 +145,3 @@ ok
 The long and short of it is that I need to expose my temporary nsd server for a minute or two at a time, but I don't need to expose any of my internal sites, or run acme.sh on my nameserver and copy the certs.
 
 This is very handy if you're in a tight spot!
-
-fin.

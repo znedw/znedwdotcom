@@ -194,5 +194,3 @@ notifier:
     port: 25
     sender: noreply@znedw.com
 ```
-
-fin.

@@ -33,5 +33,3 @@ Save, close and source your $PROFILE:
 & $PROFILE
 ```     
 Ta-da! Next time you open PWSH this will happen auto-magically.
-
-fin.
