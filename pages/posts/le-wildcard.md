@@ -15,13 +15,13 @@ Some caveats: while my main nameserver has DNSSEC and TLSA, I will not be coveri
 First you need to add an NS record to your nameserver(s) for your temporary acme nameserver which, from here on, I will refer to this server as `acme-dns`. I added two RRs to the zone I want to validate on my nameserver:
 
 First an A record for my new 'acme-dns' temporary nameserver:
-
-`acme-dns.znedw.com.     86400   IN      A       XXX.XXX.XXX.XXX`
-
+```
+acme-dns.znedw.com.     86400   IN      A       XXX.XXX.XXX.XXX`
+```
 Then an NS record to allow the new server to answer authoritatively for my zone:
-
-`_acme-challenge.znedw.com.      86400   IN  NS acme-dns.znedw.com.`
-
+```
+_acme-challenge.znedw.com.      86400   IN  NS acme-dns.znedw.com.
+```
 Note the underscore, it's important, this is a well-known acme thing.
 
 This works like a glue record and delegates acme-dns as the authority on the subdomain `_acme-challenge`, cool!

@@ -38,18 +38,21 @@ Deep down I knew this wasn't the right solution, okay, back to the drawing board
 I read a comment somewhere, on Reddit maybe, about a pacman user who exported their package directory as an NFS share, ah of course, so simple, so I set to it.
 
 First, the share, my server fstab looks like this:
-
-`/var/cache/xbps /export/xbps non defaults,bind 0 0`
+```
+/var/cache/xbps /export/xbps non defaults,bind 0 0
+```
 
 And all of my clients' fstabs look like this:
-
-`nfsserver:/export/xbps /var/cache/xbps nfs auto,noatime,rsize=65536,wsize=65536,intr,_netdev,timeo=300,retrans=1 0 0`
+```
+nfsserver:/export/xbps /var/cache/xbps nfs auto,noatime,rsize=65536,wsize=65536,intr,_netdev,timeo=300,retrans=1 0 0
+```
 
 Easy right, there's some extra NFS incantations to export the bind mounted share.
 
 This lives in /etc/exports and for simplicities sake, I allow connections on all interfaces:
-
+```
 /export/xbps    *(rw,no_root_squash,no_subtree_check)
+```
 This all works a treat, my package cache is shared between all of my machines, and my struggling 10mbit ADSL connection can have a reprieve.
 
 Say what you want about NFS, this took 5 minutes all told and works better than my previous solution.
