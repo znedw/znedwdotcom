@@ -6,13 +6,14 @@
   "scripts": {
     "dev": "next",
     "build": "node ./scripts/gen-rss.js && next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "^12.1.0",
-    "nextra": "2.0.0-beta.9",
-    "nextra-theme-blog": "2.0.0-beta.9",
+    "next": "12.2.5",
+    "nextra": "2.0.0-beta.17",
+    "nextra-theme-blog": "2.0.0-beta.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rss": "^1.2.2"
@@ -25,8 +26,9 @@
     "semi": false
   },
   "devDependencies": {
-    "eslint": "^8.20.0",
-    "eslint-config-next": "12.2.3",
+    "eslint": "^8.22.0",
+    "eslint-config-next": "12.2.5",
+    "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1"
   }
 }
