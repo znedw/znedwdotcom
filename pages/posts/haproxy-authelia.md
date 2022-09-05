@@ -5,19 +5,21 @@ description: using haproxy + authelia with auth_request
 tag: auth,haproxy,authelia
 author: Zach Nedwich
 ---
+
 # haproxy, authelia and friends
 
 ## intro
 
 i'm using the alpine docker image for HAProxy, most guides suggest building a custom image with lua-json installed but it's not necessary and this way means less image rebuilds for me, i can pull the `alpine` tag on a schedule like the cowboy i am 🤠
 
-thx to @TimWolla who's implemented the [nginx](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) [auth_request module for HAProxy in lua](
-https://github.com/TimWolla/haproxy-auth-request) it's easy to secure backends with Authelia. I also tried this with `keycloak` and `oauth2-proxy` for a full OIDC experience but it was way more complicated. Authelia has an OAuth2 provider in [beta](https://www.authelia.com/docs/configuration/identity-providers/oidc.html) as of writing this, so give it a try. i only needed a single user and not full IAM so the file provider was a good compromise.
+thx to @TimWolla who's implemented the [nginx](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) [auth_request module for HAProxy in lua](https://github.com/TimWolla/haproxy-auth-request) it's easy to secure backends with Authelia. I also tried this with `keycloak` and `oauth2-proxy` for a full OIDC experience but it was way more complicated. Authelia has an OAuth2 provider in [beta](https://www.authelia.com/docs/configuration/identity-providers/oidc.html) as of writing this, so give it a try. i only needed a single user and not full IAM so the file provider was a good compromise.
 
 ## docker-compose
+
 first up, set up docker-compose with everything we need:
 
 `docker-compose.yml`
+
 ```
 version: "3.7"
 
@@ -54,8 +56,8 @@ services:
       - TZ=Australia/Brisbane
 ```
 
-
 ## haproxy cfg
+
 i grabbed the following haproxy deps:
 
 [json.lua](https://raw.githubusercontent.com/rxi/json.lua/master/json.lua)
@@ -90,6 +92,7 @@ global
         lua-load /usr/local/etc/haproxy/auth-request.lua
 ...
 ```
+
 all of our lua scripts are loaded
 
 ```
@@ -107,24 +110,31 @@ frontend webreverse
         http-request set-header X-Forwarded-Host %[req.hdr(Host)]
         http-request set-header X-Forwarded-Uri %[path]%[var(req.questionmark)]%[query]
 ```
-Authelia needs these headers set to work properly    
+
+Authelia needs these headers set to work properly
+
 ```
 acl auth var(txn.txnhost) -m str -i auth.znedw.com
 acl protected-frontends hdr(host) -m reg -i ^(?i)(git|nextcloud|)\.znedw\.com
 ```
+
 acl for my Authelia instance (auth.znedw.com) and my `protected` hosts...
-```      
+
+```
 http-request lua.auth-request auth /api/verify if protected-frontends
 http-request redirect location https://auth.znedw.com/?rd=%[var(req.scheme)]://%[base]%[var(req.questionmark)]%[query] if protected-frontends !{ var(txn.auth_response_successful) -m bool }
 
 use_backend auth if auth
 ```
+
 this is the guts of it. `{authUrl}/api/verify` returns a 2xx response if the user has an Authelia session, otherwise it returns a 401. This result is stored in `txn.auth_response_successful`. If it's `false` and we're trying to access a protected resource, it'll redirect to my auth backend, with the `rd` query param, so we end up back at the original requested resource!
+
 ```
 backend auth
         mode http
         server auth authelia:9091 check
 ```
+
 backend for authelia, use the container name here
 
 ## authelia setup
@@ -135,6 +145,7 @@ most of my config is the defaults from the docs.
 make sure email is working, reset yr pwd and enrol for 2fa
 
 `users_database.yml`
+
 ```
 users:
   zach:
@@ -147,6 +158,7 @@ users:
 ```
 
 `configuration.yml`
+
 ```
 host: 0.0.0.0
 port: 9091

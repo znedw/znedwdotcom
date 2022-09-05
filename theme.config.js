@@ -1,7 +1,4 @@
-import { language } from 'gray-matter'
-
 const YEAR = new Date().getFullYear()
-
 const metaMightBeBroken = {
   title: 'Zach Nedwich',
   description: 'my website (borat voice)',
@@ -11,13 +8,16 @@ const metaMightBeBroken = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   footer: (
-    <small style={{ display: 'block', marginTop: '8rem' }}>
-      <time>{YEAR}</time> © Zach Nedwich.
+    <small
+      style={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        marginTop: '8rem'
+      }}
+    >
+      <time>{YEAR}</time> © Zach Nedwich
       <a href="/feed.xml">RSS</a>
       <style jsx>{`
-        a {
-          float: right;
-        }
         @media screen and (max-width: 480px) {
           article {
             padding-top: 2rem;
@@ -44,7 +44,10 @@ export default {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@znedw" />
       <meta name="twitter:title" content={metaMightBeBroken.title} />
-      <meta name="twitter:description" content={metaMightBeBroken.description} />
+      <meta
+        name="twitter:description"
+        content={metaMightBeBroken.description}
+      />
       <meta name="twitter:image" content={metaMightBeBroken.image} />
     </>
   ),
