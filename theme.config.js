@@ -17,6 +17,7 @@ export default {
     >
       <time>{YEAR}</time> © Zach Nedwich
       <a href="/feed.xml">RSS</a>
+      <a href="#">TOP</a>
       <style jsx>{`
         @media screen and (max-width: 480px) {
           article {
