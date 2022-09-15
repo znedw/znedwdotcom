@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "node ./scripts/gen-rss.js && next build",
+    "build": "node ./scripts/gen-rss.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
