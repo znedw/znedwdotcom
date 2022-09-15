@@ -1,7 +1,12 @@
-const { promises: fs } = require('fs')
-const path = require('path')
-const RSS = require('rss')
-const matter = require('gray-matter')
+import { readdir, readFile, writeFile } from 'fs/promises'
+import { join } from 'path'
+import RSS from 'rss'
+import matter from 'gray-matter'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 async function generate() {
   const feed = new RSS({
@@ -10,14 +15,14 @@ async function generate() {
     feed_url: 'https://znedw.com/feed.xml'
   })
 
-  const posts = await fs.readdir(path.join(__dirname, '..', 'pages', 'posts'))
+  const posts = await readdir(join(__dirname, '..', 'pages', 'posts'))
 
   await Promise.all(
     posts.map(async (name) => {
       if (name.startsWith('index.')) return
 
-      const content = await fs.readFile(
-        path.join(__dirname, '..', 'pages', 'posts', name)
+      const content = await readFile(
+        join(__dirname, '..', 'pages', 'posts', name)
       )
       const frontmatter = matter(content)
 
@@ -32,7 +37,7 @@ async function generate() {
     })
   )
 
-  await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }))
+  await writeFile('./public/feed.xml', feed.xml({ indent: true }))
 }
 
-generate()
+await generate()
