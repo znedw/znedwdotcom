@@ -12,7 +12,7 @@ export default {
       style={{
         display: 'flex',
         justifyContent: 'space-evenly',
-        marginTop: '8rem'
+        marginTop: '6rem'
       }}
     >
       <time>{YEAR}</time> © Zach Nedwich
