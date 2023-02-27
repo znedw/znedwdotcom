@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.10",
     "gray-matter": "^4.0.3",
     "next": "13.2.1",
     "nextra": "2.2.16",
