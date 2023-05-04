@@ -2,7 +2,8 @@ const YEAR = new Date().getFullYear()
 const metaMightBeBroken = {
   title: 'Zach Nedwich',
   description: 'my website (borat voice)',
-  image: 'https://znedw.com/images/lho.jpg'
+  image: 'https://znedw.com/images/lho.jpg',
+  url: 'https://znedw.com'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -42,6 +43,7 @@ export default {
       <meta property="og:description" content={metaMightBeBroken.description} />
       <meta property="og:title" content={metaMightBeBroken.title} />
       <meta property="og:image" content={metaMightBeBroken.image} />
+      <meta property="og:url" content={metaMightBeBroken.url} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@znedw" />
       <meta name="twitter:title" content={metaMightBeBroken.title} />
@@ -56,6 +58,7 @@ export default {
   titleSuffix: ' - znedw.com',
   postFooter: 'fin.',
   cusdis: {
+    lang: 'en',
     appId: 'be704988-9e39-4a6a-aa0a-78c5f4f7fb4a',
     host: 'http://znedw.com/'
   },
