@@ -13,9 +13,9 @@
   "dependencies": {
     "@vercel/analytics": "^1.0.1",
     "gray-matter": "^4.0.3",
-    "next": "13.3.4",
-    "nextra": "2.4.2",
-    "nextra-theme-blog": "2.4.2",
+    "next": "13.4.6",
+    "nextra": "2.7.1",
+    "nextra-theme-blog": "2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rss": "^1.2.2"
@@ -28,8 +28,8 @@
     "semi": false
   },
   "devDependencies": {
-    "eslint": "^8.39.0",
-    "eslint-config-next": "13.3.4",
+    "eslint": "^8.43.0",
+    "eslint-config-next": "13.4.6",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.2.2",
