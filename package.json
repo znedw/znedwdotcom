@@ -13,9 +13,9 @@
   "dependencies": {
     "@vercel/analytics": "^1.0.1",
     "gray-matter": "^4.0.3",
-    "next": "13.4.6",
-    "nextra": "2.7.1",
-    "nextra-theme-blog": "2.7.1",
+    "next": "13.4.10",
+    "nextra": "2.10.0",
+    "nextra-theme-blog": "2.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rss": "^1.2.2"
@@ -28,11 +28,14 @@
     "semi": false
   },
   "devDependencies": {
-    "eslint": "^8.43.0",
-    "eslint-config-next": "13.4.6",
+    "@types/node": "^20.4.2",
+    "@types/rss": "^0.0.30",
+    "eslint": "^8.45.0",
+    "eslint-config-next": "13.4.10",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.2.2",
-    "prettier": "^2.8.8"
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   }
 }
