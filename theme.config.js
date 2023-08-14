@@ -4,7 +4,7 @@ const metaMightBeBroken = {
   description: 'my website (borat voice)',
   image: 'https://znedw.com/images/lho.jpg',
   url: 'https://znedw.com',
-  buildHash: process.env.VERCEL_GITHUB_COMMIT_SHA
+  buildHash: process.env.NEXT_PUBLIC_COMMIT_SHA ?? 'unknown'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -17,7 +17,15 @@ export default {
         marginTop: '6rem'
       }}
     >
-      <time>{YEAR}</time> © Zach Nedwich (build hash {metaMightBeBroken.buildHash ?? 'unknown'})
+      <time>{YEAR}</time> © Zach Nedwich 
+      <a
+        href={
+          'https://github.com/znedw/znedwdotcom/commit/' +
+          metaMightBeBroken.buildHash
+        }
+      >
+        {metaMightBeBroken.buildHash}
+      </a>
       <a href="/feed.xml">RSS</a>
       <a href="#">TOP</a>
       <style jsx>{`
