@@ -5,9 +5,10 @@ description: let's encrypt wildcard certificates & ephemeral nsd
 tag: letsencrypt
 author: Zach Nedwich
 ---
+
 # let's encrypt wildcard certificates & ephemeral nsd
 
-So you're running your own authoritative nameserver (namely nsd) and you want to use Let's Encrypt's dns-01 challenge to get a wildcard cert, for your internal servers?
+Do you want to run your own authoritative nameserver (namely nsd) and also want to use Let's Encrypt's dns-01 challenge to get a wildcard cert, for your internal servers?
 
 This is easier than it sounds! Credit goes to this comment on HackerNews and this blog post for pointing me in the right direction.
 
@@ -15,13 +16,17 @@ Some caveats: while my main nameserver has DNSSEC and TLSA, I will not be coveri
 First you need to add an NS record to your nameserver(s) for your temporary acme nameserver which, from here on, I will refer to this server as `acme-dns`. I added two RRs to the zone I want to validate on my nameserver:
 
 First an A record for my new 'acme-dns' temporary nameserver:
+
 ```
 acme-dns.znedw.com.     86400   IN      A       XXX.XXX.XXX.XXX`
 ```
+
 Then an NS record to allow the new server to answer authoritatively for my zone:
+
 ```
 _acme-challenge.znedw.com.      86400   IN  NS acme-dns.znedw.com.
 ```
+
 Note the underscore, it's important, this is a well-known acme thing.
 
 This works like a glue record and delegates acme-dns as the authority on the subdomain `_acme-challenge`, cool!
@@ -33,6 +38,7 @@ Now we need a temporary nsd instance, install nsd somewhere, internally is good.
 My nsd.conf was nice and basic, no DNSSEC here.
 
 Remember to run `nsd-control-setup` to generate your keypair for remote control.
+
 ```
 server:
         hide-version: yes
@@ -46,11 +52,13 @@ remote-control:
         server-key-file: "/var/nsd/etc/nsd_server.key"
 zone:
         name: "_acme-challenge.znedw.com"
-        zonefile: "master/acme-challenge.znedw.com.zone"                                                        
+        zonefile: "master/acme-challenge.znedw.com.zone"
 ```
+
 I created my acme zone in /etc/nsd/master/acme-challenge.znedw.com.zone.
 
 You really just need an SOA, the verification TXT record will be added automatically later.
+
 ```
 $ORIGIN _acme-challenge.znedw.com. ; default zone domain
 $TTL 86400 ; default time to live
@@ -69,12 +77,14 @@ Fire up nsd in foreground mode with `nsd -dV5`, fix any warnings or errors.
 You will need to allow incoming connections on port 53 for TCP and UDP to allow queries to your new nsd server.
 
 I use pf and the syntax on my router was something like:
+
 ```
 pass in log on $wan proto { tcp, udp } to any port domain \
                         rdr-to 192.168.0.XXX set prio (5,6)
 ```
 
 Cool, so we've got some delegation happening, and a nameserver, you can check everything is working with dig or drill like so `drill txt _acme-challenge.znedw.com`.
+
 ```
 > drill txt _acme-challenge.znedw.com
 ;; ->>HEADER<<- opcode: QUERY, rcode: NOERROR, id: 18999
@@ -94,9 +104,11 @@ _acme-challenge.znedw.com.      42022   IN      TXT     "I'm not here"
 ;; WHEN: Sat May 18 16:21:56 2019
 ;; MSG SIZE  rcvd: 124
 ```
+
 Time to try the acme-challenge for real. I'm using acme.sh as someone has written an nsd hook for it recently!
 
 Here's the important parts of the script I use to renew my cert:
+
 ```
 # These are required by the DNS hook
 export Nsd_ZoneFile="/etc/nsd/master/acme-challenge.znedw.com.zone"
@@ -109,7 +121,9 @@ sudo nsd
 # Kill nsd
 sudo pkill nsd
 ```
+
 And the output from a successful run! Hooray!
+
 ```
 [2019-05-18 16:01:34.960] nsd[5602]: notice: nsd starting (NSD 4.1.27)
 [Sat May 18 16:01:35 AEST 2019] Using stage ACME_DIRECTORY
@@ -142,6 +156,7 @@ ok
 [Sat May 18 16:02:37 AEST 2019] Download cert, Le_LinkCert
 [Sat May 18 16:02:38 AEST 2019] Cert success.
 ```
+
 The long and short of it is that I need to expose my temporary nsd server for a minute or two at a time, but I don't need to expose any of my internal sites, or run acme.sh on my nameserver and copy the certs.
 
 This is very handy if you're in a tight spot!
