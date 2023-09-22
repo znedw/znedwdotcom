@@ -4,7 +4,7 @@ const metaMightBeBroken = {
   description: 'my website (borat voice)',
   image: 'https://znedw.com/images/lho.jpg',
   url: 'https://znedw.com',
-  buildHash: process.env.NEXT_PUBLIC_COMMIT_SHA ?? 'unknown'
+  buildHash: process.env.VERCEL_GIT_COMMIT_SHA ?? 'unknown'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
