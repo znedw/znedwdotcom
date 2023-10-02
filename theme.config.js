@@ -17,17 +17,17 @@ export default {
         marginTop: '6rem'
       }}
     >
-      <time>{YEAR}</time> © Zach Nedwich 
-      { metaMightBeBroken.buildHash !== 'local' &&
+      <time>{YEAR}</time> © Zach Nedwich
+      {metaMightBeBroken.buildHash !== 'local' && (
         <a
           href={
             'https://github.com/znedw/znedwdotcom/commit/' +
             metaMightBeBroken.buildHash
           }
         >
-          {metaMightBeBroken.buildHash}
+          {metaMightBeBroken.buildHash.slice(0, 7)}
         </a>
-      }
+      )}
       <a href="/feed.xml">RSS</a>
       <a href="#">TOP</a>
       <style jsx>{`
