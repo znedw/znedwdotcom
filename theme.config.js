@@ -4,7 +4,7 @@ const metaMightBeBroken = {
   description: 'my website (borat voice)',
   image: 'https://znedw.com/images/lho.jpg',
   url: 'https://znedw.com',
-  buildHash: process.env.VERCEL_GIT_COMMIT_SHA ?? 'unknown'
+  buildHash: process.env.GIT_COMMIT_SHA ?? 'local'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -18,14 +18,16 @@ export default {
       }}
     >
       <time>{YEAR}</time> © Zach Nedwich 
-      <a
-        href={
-          'https://github.com/znedw/znedwdotcom/commit/' +
-          metaMightBeBroken.buildHash
-        }
-      >
-        {metaMightBeBroken.buildHash}
-      </a>
+      { metaMightBeBroken.buildHash !== 'local' &&
+        <a
+          href={
+            'https://github.com/znedw/znedwdotcom/commit/' +
+            metaMightBeBroken.buildHash
+          }
+        >
+          {metaMightBeBroken.buildHash}
+        </a>
+      }
       <a href="/feed.xml">RSS</a>
       <a href="#">TOP</a>
       <style jsx>{`
