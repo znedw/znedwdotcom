@@ -11,11 +11,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.0.1",
+    "@vercel/analytics": "^1.1.0",
     "gray-matter": "^4.0.3",
-    "next": "13.5.3",
-    "nextra": "2.13.1",
-    "nextra-theme-blog": "2.13.1",
+    "next": "13.5.4",
+    "nextra": "2.13.2",
+    "nextra-theme-blog": "2.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rss": "^1.2.2"
@@ -28,10 +28,10 @@
     "semi": false
   },
   "devDependencies": {
-    "@types/node": "^20.8.0",
+    "@types/node": "^20.8.3",
     "@types/rss": "^0.0.30",
-    "eslint": "^8.50.0",
-    "eslint-config-next": "13.5.3",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^14.0.1",
