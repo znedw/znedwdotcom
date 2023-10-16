@@ -28,7 +28,7 @@
     "semi": false
   },
   "devDependencies": {
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.6",
     "@types/rss": "^0.0.30",
     "eslint": "^8.51.0",
     "eslint-config-next": "13.5.4",
