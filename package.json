@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.6",
-    "@types/rss": "^0.0.30",
+    "@types/rss": "^0.0.31",
     "eslint": "^8.51.0",
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
