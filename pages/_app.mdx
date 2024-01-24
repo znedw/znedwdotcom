@@ -1,13 +1,15 @@
 import 'nextra-theme-blog/style.css'
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export default function Nextra({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
 
 return getLayout(
+
 <>
-<Component {...pageProps} />
-<Analytics />
+  <Component {...pageProps} />
+  <Analytics />
+  <SpeedInsights />
 </>
-);
-}
+); }
