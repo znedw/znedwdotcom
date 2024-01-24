@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "next",
     "build": "node ./scripts/gen-rss.mjs && next build",
     "start": "next start",
@@ -29,14 +30,14 @@
     "semi": false
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
+    "@types/node": "^20.11.6",
     "@types/rss": "^0.0.32",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^15.0.2",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.2.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   }
 }
