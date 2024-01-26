@@ -9,11 +9,11 @@
     "build": "node ./scripts/gen-rss.mjs && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.2",
-    "@vercel/speed-insights": "^1.0.7",
+    "@vercel/speed-insights": "^1.0.8",
     "gray-matter": "^4.0.3",
     "next": "14.1.0",
     "nextra": "2.13.2",
@@ -35,7 +35,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.0",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
