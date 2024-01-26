@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "next",
-    "build": "node ./scripts/gen-rss.mjs && next build",
+    "clean": "rimraf .next .turbo",
+    "build": "node ./scripts/gen-rss.js && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky"
@@ -16,9 +19,10 @@
     "@vercel/speed-insights": "^1.0.8",
     "gray-matter": "^4.0.3",
     "next": "14.1.0",
-    "nextra": "2.13.2",
-    "nextra-theme-blog": "2.13.2",
+    "nextra": "3.0.0-alpha.13",
+    "nextra-theme-blog": "3.0.0-alpha.13",
     "react": "^18.2.0",
+    "react-cusdis": "^2.1.3",
     "react-dom": "^18.2.0",
     "rss": "^1.2.2"
   },
