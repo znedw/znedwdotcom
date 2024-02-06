@@ -9,11 +9,14 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 async function generate() {
-  const feed = new RSS({
+  console.time('generate-rss');
+  const feedInfo = {
     title: 'Zach Nedwich',
     site_url: 'https://znedw.com',
     feed_url: 'https://znedw.com/feed.xml'
-  })
+  };
+  const feed = new RSS(feedInfo);
+  console.dir(feedInfo);
 
   const posts = await readdir(join(__dirname, '..', 'pages', 'posts'))
 
@@ -38,6 +41,7 @@ async function generate() {
   )
 
   await writeFile('./public/feed.xml', feed.xml({ indent: true }))
+  console.timeEnd('generate-rss');
 }
 
 await generate()
