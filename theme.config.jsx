@@ -12,7 +12,7 @@ const metaMightBeBroken = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   // this refuses to load from cusdis: {} so it's in-line for now...
-  comments: <Cusdis appId="be704988-9e39-4a6a-aa0a-78c5f4f7fb4a" />,
+  comments: <Cusdis lang="en" appId="be704988-9e39-4a6a-aa0a-78c5f4f7fb4a" />,
   darkMode: true,
   head: ({ _, meta }) => (
     <>
