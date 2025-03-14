@@ -1,6 +1,9 @@
 import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-blog'
 import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+
 import 'nextra-theme-blog/style.css'
 
 export const meta = {
@@ -10,7 +13,6 @@ export const meta = {
   url: 'https://znedw.com',
   buildHash: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local'
 }
-
 
 export default async function RootLayout({ children }) {
   return (
@@ -32,10 +34,7 @@ export default async function RootLayout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@znedw" />
         <meta name="twitter:title" content={meta.title} />
-        <meta
-          name="twitter:description"
-          content={meta.description}
-        />
+        <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
       <body>
@@ -55,7 +54,7 @@ export default async function RootLayout({ children }) {
               CC BY-NC 4.0
             </abbr>{' '}
             {new Date().getFullYear()} © Zach NEDWICH.
-            <br/>
+            <br />
             {meta.buildHash !== 'local' && (
               <a
                 href={
@@ -72,6 +71,8 @@ export default async function RootLayout({ children }) {
             </a>
           </Footer>
         </Layout>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
