@@ -40,35 +40,36 @@ export default async function RootLayout({ children }) {
       <body>
         <Layout>
           <Navbar pageMap={await getPageMap()}>
-            <Search />
+            <Search placeholder="Search..." />
             <ThemeSwitch />
           </Navbar>
 
           {children}
 
           <Footer>
-            <abbr
-              title="This site and all its content are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
-              style={{ cursor: 'help' }}
-            >
-              CC BY-NC 4.0
-            </abbr>{' '}
-            {new Date().getFullYear()} © Zach NEDWICH.
-            <br />
-            {meta.buildHash !== 'local' && (
-              <a
-                href={
-                  'https://github.com/znedw/znedwdotcom/commit/' +
-                  meta.buildHash
-                }
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <abbr
+                title="This site and all its content are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
+                style={{ cursor: 'help' }}
               >
-                {meta.buildHash.slice(0, 7)}
+                CC BY-NC 4.0
+              </abbr>{' '}
+              {new Date().getFullYear()} © Zach NEDWICH.
+              {
+                <a
+                  href={
+                    'https://github.com/znedw/znedwdotcom/commit/' +
+                    meta.buildHash
+                  }
+                >
+                  {meta.buildHash.slice(0, 7)}
+                </a>
+              }
+              <a href="#">TOP</a>
+              <a href="/rss.xml" style={{ float: 'right' }}>
+                RSS
               </a>
-            )}
-            <a href="#">TOP</a>
-            <a href="/rss.xml" style={{ float: 'right' }}>
-              RSS
-            </a>
+            </div>
           </Footer>
         </Layout>
         <Analytics />
