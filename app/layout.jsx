@@ -65,7 +65,7 @@ export default async function RootLayout({ children }) {
                   {meta.buildHash.slice(0, 7)}
                 </a>
               }
-              <a href="#">TOP</a>
+              <a href="#top">TOP</a>
               <a href="/rss.xml" style={{ float: 'right' }}>
                 RSS
               </a>
