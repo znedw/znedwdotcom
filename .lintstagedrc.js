@@ -1,12 +1,14 @@
 import { relative } from 'path'
 
 const buildEslintCommand = (filenames) =>
-  `next lint --fix --file ${filenames
+  `eslint --fix ${filenames
     .map((f) => relative(process.cwd(), f))
-    .join(' --file ')}`
+    .join(' ')}`
 
-export default {
+const config = {
   '*.{js,jsx,ts,tsx,mjs}': [buildEslintCommand],
   '**/*.(md|mdx)': (filenames) =>
     `yarn prettier --write ${filenames.join(' ')}`
 }
+
+export default config;
