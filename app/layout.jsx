@@ -5,16 +5,29 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import 'nextra-theme-blog/style.css'
+import { useEffect } from 'react'
 
 export const meta = {
   title: 'Zach Nedwich',
   description: 'my website (borat voice)',
   image: 'https://znedw.com/images/lho.jpg',
   url: 'https://znedw.com',
-  buildHash: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local'
+  buildHash: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local',
+  commitMsg: 'local'
 }
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
+  useEffect(() => {
+    const fetchCommit = async () => {
+      const data = await fetch(
+        `https://api.github.com/repos/znedw/znedwdotcom/commits/${meta.buildHash}`
+      )
+      const commit = await data.json()
+      meta.commitMsg = commit?.commit?.message
+    }
+    fetchCommit()
+  }, [])
+
   return (
     <html lang="en" suppressHydrationWarning>
       <Head backgroundColor={{ dark: '#0f172a', light: '#fefce8' }}>
@@ -39,7 +52,7 @@ export default async function RootLayout({ children }) {
       </Head>
       <body>
         <Layout>
-          <Navbar pageMap={await getPageMap()}>
+          <Navbar pageMap={getPageMap()}>
             <Search placeholder="Search..." />
             <ThemeSwitch />
           </Navbar>
@@ -61,6 +74,7 @@ export default async function RootLayout({ children }) {
                     'https://github.com/znedw/znedwdotcom/commit/' +
                     meta.buildHash
                   }
+                  title={meta.commitMsg}
                 >
                   {meta.buildHash.slice(0, 7)}
                 </a>
