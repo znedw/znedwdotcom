@@ -1,4 +1,3 @@
-'use client'
 import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-blog'
 import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
@@ -6,29 +5,21 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import 'nextra-theme-blog/style.css'
-import { useEffect } from 'react'
 
 export const meta = {
   title: 'Zach Nedwich',
   description: 'my website (borat voice)',
   image: 'https://znedw.com/images/lho.jpg',
   url: 'https://znedw.com',
-  buildHash: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local',
-  commitMsg: 'local'
+  buildHash: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local'
 }
 
-export default function RootLayout({ children }) {
-  useEffect(() => {
-    const fetchCommit = async () => {
-      const data = await fetch(
-        `https://api.github.com/repos/znedw/znedwdotcom/commits/${meta.buildHash}`
-      )
-      const commit = await data.json()
-      meta.commitMsg = commit?.commit?.message
-    }
-    fetchCommit()
-  }, [])
-
+export default async function RootLayout({ children }) {
+  const data = await fetch(
+    `https://api.github.com/repos/znedw/znedwdotcom/commits/${meta.buildHash}`
+  )
+  const commit = await data.json()
+  const commitMsg = commit?.commit?.message
   return (
     <html lang="en" suppressHydrationWarning>
       <Head backgroundColor={{ dark: '#0f172a', light: '#fefce8' }}>
@@ -53,7 +44,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <Layout>
-          <Navbar pageMap={getPageMap()}>
+          <Navbar pageMap={await getPageMap()}>
             <Search placeholder="Search..." />
             <ThemeSwitch />
           </Navbar>
@@ -75,7 +66,7 @@ export default function RootLayout({ children }) {
                     'https://github.com/znedw/znedwdotcom/commit/' +
                     meta.buildHash
                   }
-                  title={meta.commitMsg}
+                  title={commitMsg}
                 >
                   {meta.buildHash.slice(0, 7)}
                 </a>
