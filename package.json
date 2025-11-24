@@ -37,7 +37,7 @@
     "eslint-config-next": "16.0.1",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "pagefind": "^1.4.0",
     "prettier": "^3.7.3",
     "typescript": "^5.9.3"
