@@ -3,6 +3,7 @@
   "type": "module",
   "license": "MIT",
   "private": true,
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean": "npx rimraf .next .turbo",
