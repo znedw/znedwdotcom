@@ -1,4 +1,4 @@
-import { getPosts } from '../posts/get-posts.js'
+import { getPosts } from '@/lib/posts'
 
 const CONFIG = {
   title: 'Zach Nedwich',
