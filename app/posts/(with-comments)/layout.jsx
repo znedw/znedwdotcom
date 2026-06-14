@@ -1,10 +1,8 @@
-import { Comments } from 'nextra-theme-blog'
+import { getPosts } from '@/lib/posts'
+import PostLayoutShell from '@/components/PostLayoutShell'
 
-export default function CommentsLayout({ children }) {
-  return (
-    <>
-      {children}
-      <Comments lang="en" appId="be704988-9e39-4a6a-aa0a-78c5f4f7fb4a" />
-    </>
-  )
+export default async function PostLayout({ children }) {
+  const posts = await getPosts()
+
+  return <PostLayoutShell posts={posts}>{children}</PostLayoutShell>
 }

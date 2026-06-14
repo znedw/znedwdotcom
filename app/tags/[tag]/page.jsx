@@ -1,10 +1,10 @@
-import { PostCard } from 'nextra-theme-blog'
-import { getPosts, getTags } from '../../posts/get-posts'
+import PostCard from '@/components/PostCard'
+import { getPosts, getTags } from '@/lib/posts'
 
 export async function generateMetadata(props) {
   const params = await props.params
   return {
-    title: `Posts Tagged with “${decodeURIComponent(params.tag)}”`
+    title: `Posts Tagged with "${decodeURIComponent(params.tag)}"`
   }
 }
 
@@ -22,7 +22,7 @@ export default async function TagPage(props) {
       <h1>{title}</h1>
       {posts
         .filter(post =>
-          post.frontMatter.tags.includes(decodeURIComponent(params.tag))
+          (post.frontMatter.tags ?? []).includes(decodeURIComponent(params.tag))
         )
         .map(post => (
           <PostCard key={post.route} post={post} />

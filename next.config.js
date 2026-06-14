@@ -1,11 +1,15 @@
-import nextra from 'nextra'
+import createMDX from '@next/mdx'
 
-const withNextra = nextra({
-  defaultShowCopyCode: true,
-  readingTime: true
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: ['remark-gfm'],
+    rehypePlugins: [['rehype-pretty-code', { theme: 'github-dark-dimmed', keepBackground: false }]]
+  }
 })
 
-export default withNextra({
+export default withMDX({
   reactStrictMode: true,
-  cleanDistDir: true
+  cleanDistDir: true,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx']
 })

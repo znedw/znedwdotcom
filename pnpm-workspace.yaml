@@ -1,0 +1,13 @@
+packages:
+  - '.'
+
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@vercel/speed-insights'
+  - esbuild
+  - sharp
+  - unrs-resolver
