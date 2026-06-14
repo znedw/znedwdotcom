@@ -1,11 +1,27 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import matter from 'gray-matter'
-import readingTime from 'reading-time'
+import readingTime, { ReadTimeResults } from 'reading-time'
 
 const POSTS_DIR = path.join(process.cwd(), 'app', 'posts', '(with-comments)')
 
-export async function getPosts() {
+export interface PostFrontMatter {
+  title: string
+  date: string
+  description?: string
+  tags?: string[]
+  [key: string]: unknown
+}
+
+export interface Post {
+  slug: string
+  route: string
+  title: string
+  frontMatter: PostFrontMatter
+  readingTime: ReadTimeResults
+}
+
+export async function getPosts(): Promise<Post[]> {
   const entries = await fs.readdir(POSTS_DIR, { withFileTypes: true })
   const posts = await Promise.all(
     entries
@@ -16,18 +32,18 @@ export async function getPosts() {
         return {
           slug: d.name,
           route: `/posts/${d.name}`,
-          title: data.title,
-          frontMatter: data,
+          title: data.title as string,
+          frontMatter: data as PostFrontMatter,
           readingTime: readingTime(content)
         }
       })
   )
   return posts.sort(
-    (a, b) => new Date(b.frontMatter.date) - new Date(a.frontMatter.date)
+    (a, b) => new Date(b.frontMatter.date).getTime() - new Date(a.frontMatter.date).getTime()
   )
 }
 
-export async function getTags() {
+export async function getTags(): Promise<string[]> {
   const posts = await getPosts()
   return posts.flatMap(p => p.frontMatter.tags ?? [])
 }

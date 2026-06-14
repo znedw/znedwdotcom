@@ -1,10 +1,12 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import CusdisComments from '@/components/CusdisComments'
+import type { Post } from '@/lib/posts'
 
-function formatDate(dateStr) {
+function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en', {
     day: 'numeric',
     month: 'long',
@@ -12,7 +14,7 @@ function formatDate(dateStr) {
   })
 }
 
-export default function PostLayoutShell({ children, posts }) {
+export default function PostLayoutShell({ children, posts }: { children: ReactNode; posts: Post[] }) {
   const pathname = usePathname()
   const slug = pathname?.split('/').filter(Boolean).at(-1)
   const post = posts.find(p => p.slug === slug)

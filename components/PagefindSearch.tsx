@@ -2,11 +2,26 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+interface PagefindResult {
+  url: string
+  meta?: { title?: string }
+}
+
+interface Pagefind {
+  search: (query: string) => Promise<{ results: Array<{ data: () => Promise<PagefindResult> }> }>
+}
+
+declare global {
+  interface Window {
+    pagefind?: Pagefind
+  }
+}
+
 export default function PagefindSearch() {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState<PagefindResult[]>([])
   const [ready, setReady] = useState(false)
-  const pagefind = useRef(null)
+  const pagefind = useRef<Pagefind | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -25,7 +40,7 @@ export default function PagefindSearch() {
       script.async = true
       script.onload = () => {
         if (!cancelled && window.pagefind?.search) {
-          pagefind.current = window.pagefind
+          pagefind.current = window.pagefind ?? null
           setReady(true)
         }
       }
@@ -42,7 +57,7 @@ export default function PagefindSearch() {
     }
   }, [])
 
-  async function handleSearch(e) {
+  async function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const q = e.target.value
     setQuery(q)
     if (!q.trim() || !pagefind.current) {

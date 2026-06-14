@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import ThemeProvider from '@/components/ThemeProvider'
@@ -29,8 +30,8 @@ export const metadata = {
 
 const buildHash = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local'
 
-export default async function RootLayout({ children }) {
-  let commitMsg = null
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  let commitMsg: string | null = null
   try {
     const data = await fetch(
       `https://api.github.com/repos/znedw/znedwdotcom/commits/${buildHash}`,

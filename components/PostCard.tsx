@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import type { Post } from '@/lib/posts'
 
-function formatDate(dateStr) {
+function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en', {
     day: 'numeric',
     month: 'long',
@@ -8,7 +9,7 @@ function formatDate(dateStr) {
   })
 }
 
-export default function PostCard({ post }) {
+export default function PostCard({ post }: { post: Post }) {
   return (
     <div style={{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
       <h2 style={{ marginBottom: '0.25rem' }}>

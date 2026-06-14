@@ -2,7 +2,13 @@
 
 import { ReactCusdis } from 'react-cusdis'
 
-export default function CusdisComments({ appId, pageId, pageTitle }) {
+interface CusdisCommentsProps {
+  appId: string
+  pageId: string
+  pageTitle: string
+}
+
+export default function CusdisComments({ appId, pageId, pageTitle }: CusdisCommentsProps) {
   return (
     <ReactCusdis
       attrs={{

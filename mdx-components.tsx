@@ -1,6 +1,9 @@
-export function useMDXComponents(components) {
+import type { MDXComponents } from 'mdx/types'
+import type { ReactNode } from 'react'
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({ children }) => (
+    h1: ({ children }: { children?: ReactNode }) => (
       <h1
         style={{
           WebkitBackgroundClip: 'text',
