@@ -1,0 +1,17 @@
+/* Stop Cusdis comments iframe from clipping the Nickname/Email/Reply fields */
+#cusdis_thread,
+iframe#cusdis_thread {
+  width: 100%;
+  min-height: 600px;   /* generous default while it measures itself */
+  height: auto;
+  border: 0;
+  overflow: visible;
+}
+
+/* In case the iframe is wrapped by Nextra/Cusdis container */
+#cusdis_thread iframe {
+  width: 100%;
+  min-height: 600px;
+  border: 0;
+  display: block;
+}
