@@ -1,20 +1,16 @@
 import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
-import remarkGfm from 'remark-gfm'
-import rehypePrettyCode from 'rehype-pretty-code'
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [
-      remarkGfm,
-      remarkFrontmatter,
-      [remarkMdxFrontmatter, { name: 'metadata' }]
+      'remark-gfm',
+      'remark-frontmatter',
+      ['remark-mdx-frontmatter', { name: 'metadata' }]
     ],
     rehypePlugins: [
-      [rehypePrettyCode, { theme: 'github-dark-dimmed', keepBackground: false }]
+      ['rehype-pretty-code', { theme: 'github-dark-dimmed', keepBackground: false }]
     ]
   }
 })
