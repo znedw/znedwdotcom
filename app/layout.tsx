@@ -28,7 +28,7 @@ export const metadata = {
   robots: 'follow, index'
 }
 
-const buildHash = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? 'local'
+const buildHash = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA || 'local'
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   let commitMsg: string | null = null
@@ -54,20 +54,24 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             </Navbar>
             <main>{children}</main>
             <Footer>
-              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div className="site-footer-links">
                 <abbr
                   title="This site and all its content are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
-                  style={{ cursor: 'help' }}
+                  className="site-footer-help"
                 >
                   CC BY-NC 4.0
-                </abbr>{' '}
-                {new Date().getFullYear()} © Zach NEDWICH.
-                <a
-                  href={`https://github.com/znedw/znedwdotcom/commit/${buildHash}`}
-                  title={commitMsg ?? undefined}
-                >
-                  {buildHash.slice(0, 7)}
-                </a>
+                </abbr>
+                <span>{new Date().getFullYear()} © Zach NEDWICH.</span>
+                {buildHash !== 'local' ? (
+                  <a
+                    href={`https://github.com/znedw/znedwdotcom/commit/${buildHash}`}
+                    title={commitMsg ?? undefined}
+                  >
+                    {buildHash.slice(0, 7)}
+                  </a>
+                ) : (
+                  <span>local</span>
+                )}
                 <a href="#top">TOP</a>
                 <a href="/rss.xml">RSS</a>
               </div>

@@ -1,12 +1,40 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+
+  const links = [
+    { href: '/', label: 'About' },
+    { href: '/posts', label: 'Posts' }
+  ]
+
   return (
-    <header style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', justifyContent: 'flex-end', marginBottom: '2rem' }} data-pagefind-ignore="all">
-      <Link href="/" style={{ fontWeight: 500, textDecoration: 'none', color: 'inherit' }}>znedw.com</Link>
-      <Link href="/posts" style={{ textDecoration: 'none', color: 'inherit' }}>Posts</Link>
-      {children}
+    <header className="site-header" data-pagefind-ignore="all">
+      <nav className="site-nav" aria-label="Primary">
+        {links.map(link => {
+          const isActive =
+            link.href === '/'
+              ? pathname === '/'
+              : pathname === link.href || pathname?.startsWith(`${link.href}/`)
+
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="site-nav-link"
+              aria-current={isActive ? 'page' : undefined}
+              data-active={isActive}
+            >
+              {link.label}
+            </Link>
+          )
+        })}
+      </nav>
+      <div className="site-header-tools">{children}</div>
     </header>
   )
 }

@@ -22,24 +22,14 @@ export default function PostLayoutShell({ children, posts }: { children: ReactNo
   return (
     <article>
       {post && (
-        <header style={{ marginBottom: '2rem' }}>
-          <h1
-            style={{
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              backgroundImage: 'linear-gradient(90deg,#7928CA,#FF0080)',
-              marginBottom: '0.5rem'
-            }}
-          >
-            {post.title}
-          </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', margin: '0.25rem 0' }}>
+        <header className="page-header" data-pagefind-ignore="all">
+          <h1 className="post-title">{post.title}</h1>
+          <p className="page-meta">
             Last updated at {formatDate(post.frontMatter.date)}
             {post.readingTime && ` · ${post.readingTime.text}`}
           </p>
           {post.frontMatter.tags && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginTop: '0.5rem' }}>
+            <div className="tag-list">
               {post.frontMatter.tags.map(tag => (
                 <Link key={tag} href={`/tags/${tag}`} className="tag">
                   {tag}
@@ -50,7 +40,7 @@ export default function PostLayoutShell({ children, posts }: { children: ReactNo
         </header>
       )}
       {children}
-      <div style={{ marginTop: '3rem' }}>
+      <div className="post-comments">
         <CusdisComments
           appId="be704988-9e39-4a6a-aa0a-78c5f4f7fb4a"
           pageId={slug ?? 'unknown'}

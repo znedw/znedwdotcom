@@ -70,20 +70,25 @@ export default function PagefindSearch() {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="search-shell">
       <input
         type="search"
         value={query}
         onChange={handleSearch}
-        placeholder={ready ? 'Search...' : 'Search (build site to enable)'}
+        placeholder="Search..."
         disabled={!ready}
-        style={{ padding: '0.25rem 0.5rem', borderRadius: '4px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'inherit', width: '160px' }}
+        className="search-input"
       />
+      <span className="search-shortcut" aria-hidden="true">
+        CTRL K
+      </span>
       {results.length > 0 && (
-        <ul style={{ position: 'absolute', right: 0, top: '100%', background: 'var(--bg)', border: '1px solid var(--border-color)', borderRadius: '4px', listStyle: 'none', margin: 0, padding: '0.5rem', zIndex: 100, minWidth: '240px' }}>
+        <ul className="search-results">
           {results.map(r => (
-            <li key={r.url} style={{ padding: '0.25rem 0' }}>
-              <a href={r.url} style={{ textDecoration: 'none', color: 'inherit' }}>{r.meta?.title ?? r.url}</a>
+            <li key={r.url}>
+              <a href={r.url} className="search-result-link">
+                {r.meta?.title ?? r.url}
+              </a>
             </li>
           ))}
         </ul>

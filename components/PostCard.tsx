@@ -11,20 +11,20 @@ function formatDate(dateStr: string) {
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <div style={{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
-      <h2 style={{ marginBottom: '0.25rem' }}>
-        <Link href={post.route} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <article className="post-card">
+      <h2 className="post-card-title">
+        <Link href={post.route} className="post-card-link">
           {post.title}
         </Link>
       </h2>
-      <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', margin: '0.25rem 0' }}>
+      <p className="post-meta">
         Last updated at {formatDate(post.frontMatter.date)}
       </p>
       {post.frontMatter.description && (
-        <p style={{ margin: '0.5rem 0' }}>{post.frontMatter.description}</p>
+        <p>{post.frontMatter.description}</p>
       )}
       {post.frontMatter.tags && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginTop: '0.5rem' }}>
+        <div className="tag-list">
           {post.frontMatter.tags.map(tag => (
             <Link key={tag} href={`/tags/${tag}`} className="tag">
               {tag}
@@ -32,6 +32,6 @@ export default function PostCard({ post }: { post: Post }) {
           ))}
         </div>
       )}
-    </div>
+    </article>
   )
 }
