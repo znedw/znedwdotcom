@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 
 export default function Footer({ children }: { children: ReactNode }) {
   return (
-    <footer style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid var(--border-color)', fontSize: '0.875rem' }}>
+    <small style={{ marginTop: '8rem', display: 'block', fontSize: '0.875rem' }} data-pagefind-ignore="all">
       {children}
-    </footer>
+    </small>
   )
 }
