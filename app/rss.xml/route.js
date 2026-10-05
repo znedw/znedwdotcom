@@ -1,5 +1,7 @@
 import { getPosts } from '../posts/get-posts.js'
 
+export const dynamic = 'force-static'
+
 const CONFIG = {
   title: 'Zach Nedwich',
   siteUrl: 'https://znedw.com',

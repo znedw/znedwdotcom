@@ -7,5 +7,6 @@ const withNextra = nextra({
 
 export default withNextra({
   reactStrictMode: true,
-  cleanDistDir: true
+  cleanDistDir: true,
+  output: 'export'
 })

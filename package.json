@@ -3,20 +3,20 @@
   "type": "module",
   "license": "MIT",
   "private": true,
+  "packageManager": "pnpm@11.0.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "clean": "npx rimraf .next .turbo",
-    "build": "next build",
+    "clean": "npx rimraf .next .turbo",    
+    "build": "next build && pagefind --site out --output-path public/_pagefind",
     "dev": "next --turbopack",
-    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prepare": "husky"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "next": "^16.3.6",
+    "next": "^16.3.8",
     "nextra": "^4.6.1",
     "nextra-theme-blog": "^4.6.1",
     "react": "^19.3.0",
@@ -31,9 +31,10 @@
     "semi": false
   },
   "devDependencies": {
+    "@eslint/compat": "^2.1.1",
     "@eslint/eslintrc": "^3.3.7",
-    "@eslint/js": "^9.39.5",
-    "eslint": "^9.39.2",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
     "eslint-config-next": "^16.3.8",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
@@ -41,14 +42,5 @@
     "pagefind": "^1.5.2",
     "prettier": "^3.9.9",
     "typescript": "^6.0.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "@vercel/speed-insights",
-      "esbuild",
-      "sharp",
-      "unrs-resolver"
-    ]
   }
 }
